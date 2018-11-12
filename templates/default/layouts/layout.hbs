@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{lang_dir}}">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{__ settings.siteName}} - {{pageTitle}}</title>
+
+	<!-- Bootstrap CSS -->
+	{{!--
+	<link href="/stylesheets/bootstrap.min.css" rel="stylesheet"> --}}
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/themify-icons.css" />
+	<link rel="stylesheet" href="/css/magnific-popup.css" />
+	<link rel="stylesheet" href="/css/animate.css" />
+	<link rel="stylesheet" href="/css/owl.carousel.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+	<!-- Custom Style -->
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+	{{> header-section }}
+	<div class="container">
+		{{{body}}}
+	</div>
+	{{>footer}}
+
+	<!-- jQuery -->
+	<script src="/javascripts/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="/javascripts/bootstrap.min.js"></script>
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.countdown.js"></script>
+	<script src="/js/masonry.pkgd.min.js"></script>
+	<script src="/js/magnific-popup.min.js"></script>
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- header section -->
+<header class="header-section">
+    <div class="container">
+        <!-- logo -->
+        <a href="/" class="site-logo">
+            <img src="/img/logo.png" alt="">
+        </a>
+        <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="header-info">
+            <div class="hf-item">
+                <i class="fa fa-clock-o"></i>
+                <p>
+                    <span>Working time:</span>Monday - Friday: 08 AM - 06 PM</p>
+            </div>
+            <div class="hf-item">
+                <i class="fa fa-map-marker"></i>
+                <p>
+                    <span>Find us:</span>144 Xuan Thuy Street, Cau Giay, Hanoi City, VN</p>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header section end-->
+
+
+<!-- Header section  -->
+<nav class="nav-section">
+    <div class="container">
+        <div class="nav-right">
+            {{!--
+            <a href="">
+                <i class="fa fa-search"></i>
+            </a> --}} {{!--
+            <a href="">
+                <i class="fa fa-shopping-cart"></i>
+            </a> --}} 
+
+            {{#if loged}}
+            <a href="/member/logout">Logout</a>
+            {{else}}
+            <a href="/member/register">Sign up</a>
+            <a href="/member/login">Login</a>
+            {{/if}}
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="/images/{{clanguage}}.png"> {{@root.__ clanguage}}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                {{#each languages}}
+                <li>
+                    <a onclick="window.location.href='/{{this}}'" href="#">
+                        <img src="/images/{{this}}.png"> {{@root.__ this}}</a>
+                </li>
+                {{/each}}
+            </ul>
+
+        </div>
+        <ul class="main-menu">
+            <li class="active">
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="about.html">About Us</a>
+            </li>
+            <li>
+                <a href="#">Event</a>
+            </li>
+            <li>
+                <a href="course.html">COURSES</a>
+            </li>
+            <li>
+                <a href="blog.html">blog</a>
+            </li>
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Header section end -->

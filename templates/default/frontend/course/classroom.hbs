@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/javascripts/jquery.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="/course/classroom/css/style.css">
+    <script src="/course/classroom/js/socket.io.js"></script> {{!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script> --}}
+    <script src="/course/classroom/js/RTCMultiConnection.min.js"></script>
+    <script>
+        //if (!location.hash.replace('#', '').length) {
+            // location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
+            // location.reload();
+        //}
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-default nav-classroom" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="/img/logo-light.png" alt="">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-left: 90px">
+                    <ul class="nav navbar-nav ul-nav-classroom">
+                        <li>
+                            <a href="#">Files</a>
+                        </li>
+                        <li>
+                            <a href="#">Tools</a>
+                        </li>
+                        <li id="nav-chat">
+                            <a href="#">Chat</a>
+                        </li>
+                        <li>
+                            <a href="#">Playlist</a>
+                        </li>
+                        <li>
+                            <a href="#">Participants</a>
+                        </li>
+                        <li>
+                            <a href="#">Notes</a>
+                        </li>
+                        <li>
+                            <a href="#">Invite</a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav ul-nav-classroom pull-right">
+                        <li>
+                            <a href="#">{{ member.info.firstname }} {{ member.info.lastname }}</a>
+                            <input id="currentuser" type="hidden" value="{{ member.info.firstname }} {{ member.info.lastname }}">
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div id="main-panel" class="row">
+                    {{!--
+                    <div class="" style="margin-top: 200px; margin-left: 43%">
+                        <button id="btn-exam" class="btn btn-default center">Start</button>
+                        <button id="btn-join" class="btn btn-default">Join room</button>
+                    </div> --}}
+                    {{!-- <div class="col-md-2"></div> --}}
+                    {{!-- <div class="col-md-8"> --}}
+                        <script>
+                            $(document).ready(function () {
+                                var urlDoc = 'http://' + window.location.hostname + ':3000/web/viewer.html?file=a.pdf'
+                                $('#doc').attr('src', urlDoc);
+                            });
+                        </script>
+                        <iframe id="doc" frameborder="0" style=" width: 100%; height: 700px;"></iframe>
+                    {{!-- </div> --}}
+                    {{!-- <div class="col-md-2"></div> --}}
+                </div>
+                <div class="row" style="height: 157px; background-color: #101b21; padding: 0px; margin-bottom: 0px">
+                    <div id="local-video" class="col-md-2" style="height: 100%"></div>
+                    <div id="remote-video" class="col-md-2" style="height: 100%"></div>
+                    {{!--
+                    <div class="col-md-3" style="height: 150px;"></div> --}} {{!--
+                    <div class="col-md-3" style="height: 150px;"></div> --}}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div id="chat-panel" class="panel panel-default" style="border-radius: 0px;">
+                        <div class="panel-heading">
+                            <i class="fa fa-comments fa-fw"></i> Chat
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body"  style="height: 199px">
+                            <ul class="chat" id="chat-content">
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="txtMessage" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-info" id="btn-chat">
+                                        Send
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
+                    <!-- /.panel .chat-panel -->
+                </div>
+                {{!--
+                <div class="row" style="height: 100px; background-color: #fff"></div> --}}
+            </div>
+        </div>
+    </div>
+
+    {{!--
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/course/classroom/js/handle.js"></script>
+</body>
+
+</html>
