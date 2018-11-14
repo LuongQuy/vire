@@ -62,7 +62,7 @@ exports.get_google_login = passport.authenticate('google', {
 
 /* GET google callback login */
 exports.get_google_callback_login = passport.authenticate('google', {
-    successRedirect: '/member/account',
+    successRedirect: '/course/student/classroom',
     failureRedirect: '/member/login'
 });
 
@@ -80,11 +80,35 @@ exports.isLogedIn = function(req, res, next){
     res.redirect('/member/login');
 };
 
+exports.isLogedIn_Instructor = function(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.roles === 'ADMIN'){
+            return next();
+        }else{
+            res.redirect('/course/student/classroom');
+        }
+    } else{
+        res.redirect('/member/login');
+    }
+};
+
+exports.isLogedIn_Student = function(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.roles === 'MEMBER'){
+            return next();
+        }else if(req.user.roles === 'ADMIN'){
+            res.redirect('/course/instructor/classroom');
+        }
+    } else{
+        res.redirect('/member/login');
+    }
+};
+
 exports.notLogedIn = function(req, res, next){
     if(!req.isAuthenticated()){
         return next();
     }
-    res.redirect('/member/account');
+    res.redirect('/course/student/classroom');
 };
 
 exports.notLogin_use = function(req, res, next){

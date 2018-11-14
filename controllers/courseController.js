@@ -17,13 +17,20 @@ exports.post_add_new_course = function(req, res, next){
     // process.exit();
     newCourse.save(function(err) {
         if(err) throw err;
-        res.redirect('/course/classroom');
+        res.redirect('/course/instructor/classroom');
     });
 }
 
-exports.get_classroom = function(req, res, next){
+exports.get_classroom_student = function(req, res, next){
     res.render('frontend/course/classroom', {
         layout: false,
         pageTitle: "Classroom"
+    });
+}
+
+exports.get_classroom_instructor = function(req, res, next){
+    res.render('backend/course/classroom', {
+        layout: false,
+        pageTitle: "Classroom - Instructor"
     });
 }

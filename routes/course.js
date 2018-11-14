@@ -12,6 +12,8 @@ router.get('/', member_controller.isLogedIn, course_controller.get_course);
 
 router.post('/add-new-course', course_controller.post_add_new_course);
 
-router.get('/classroom', course_controller.get_classroom);
+router.get('/student/classroom', member_controller.isLogedIn_Student, course_controller.get_classroom_student);
+
+router.get('/instructor/classroom', member_controller.isLogedIn_Instructor, course_controller.get_classroom_instructor);
 
 module.exports = router;

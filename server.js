@@ -45,9 +45,15 @@ const io = require('socket.io')(server);
 var arrUser = [];
 var arrayClass = [];
 io.on('connection', (socket) => {
-
-    socket.on('CLICK_PRE_BTN', msg => {
+    socket.on('CLIENT_SEND_PREVIOUS', msg => {
+        socket.broadcast.emit('SERVER_SEND_PREVIOUS', msg);
         console.log(msg);
+        
+    });
+    socket.on('CLIENT_SEND_NEXT', msg => {
+        socket.broadcast.emit('SERVER_SEND_NEXT', msg);
+        console.log(msg);
+        
     });
     // console.log(socket.id + 'da ket noi');
     // console.log(socket.adapter.rooms);

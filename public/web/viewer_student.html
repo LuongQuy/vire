@@ -42,6 +42,28 @@ See https://github.com/adobe-type-tools/cmap-resources
 
   <script src="viewer.js"></script>
 
+  <script>
+    var socket = io('http://localhost:3000');
+    socket.on('SERVER_SEND_PREVIOUS', msg => {
+      if (msg + 1 == $('#pageNumber').val()) {
+        $('#previous').click();
+      } else {
+        // $('#pageNumber').attr('value', msg);
+        // setTimeout(() => {location.reload()}, 1000);
+      }
+      // alert('msg: ' + msg + ' / current page number: ' + $('#pageNumber').val() + (msg + 1 == $('#pageNumber').val()));
+    });
+    socket.on('SERVER_SEND_NEXT', msg => {
+      if (msg - 1 == $('#pageNumber').val()) {
+        $('#next').click();
+      } else {
+        // $('#pageNumber').attr('value', msg);
+        // setTimeout(() => {location.reload()}, 1000);
+      }
+    });
+  </script>
+
+
 </head>
 
 <body tabindex="1" class="loadingInProgress">

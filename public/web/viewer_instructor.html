@@ -29,7 +29,6 @@ See https://github.com/adobe-type-tools/cmap-resources
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>PDF.js viewer</title>
 
-
   <link rel="stylesheet" href="viewer.css">
 
 
@@ -41,6 +40,19 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 
   <script src="viewer.js"></script>
+
+  <script>
+    var socket = io('http://localhost:3000');
+    $(document).ready(function () {
+      $('#previous').on('click', function () {
+        socket.emit('CLIENT_SEND_PREVIOUS', parseInt($('#pageNumber').val()) - 1);
+      });
+      $('#next').on('click', function () {
+        socket.emit('CLIENT_SEND_NEXT', parseInt($('#pageNumber').val()) + 1);
+      });
+    })
+  </script>
+
 
 </head>
 
